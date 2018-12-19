@@ -1,10 +1,11 @@
 import React from "react";
-import Welcome from "./welcome";
+import TodoList from "./TodoList";
 
-describe("The Welcome component", () => {
-  it("message should be Hello", () => {
-    let component = Welcome();
-    expect(typeof component).toEqual("object");
-    expect(component).toEqual(<h3>Hello</h3>);
+describe("The TodoList component", () => {
+  it("header should be Todolist", () => {
+    const instance = new TodoList();
+    const componentOnScreen = instance.render();
+    const expectedHeader = new RegExp(/todolist/i);
+    expect(componentOnScreen.props.children).toMatch(expectedHeader);
   });
 });
