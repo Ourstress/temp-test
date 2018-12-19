@@ -2,10 +2,8 @@ import React from "react";
 import TodoList from "./TodoList";
 
 describe("The TodoList component", () => {
-  it("header should be Todolist", () => {
+  it("Todolist's state should contain an array of todos with 3 elements", () => {
     const instance = new TodoList();
-    const componentOnScreen = instance.render();
-    const expectedHeader = new RegExp(/todolist/i);
-    expect(componentOnScreen.props.children).toMatch(expectedHeader);
+    expect(instance.state.todos).toHaveLength(3);
   });
 });
