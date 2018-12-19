@@ -17,6 +17,7 @@ class TodoList extends Component {
 export default TodoList;
 
 // Your task is to display task2 instead of task1 (Note: this.state.todos[0] has the value of "task1").
+// Make live changes at https://codesandbox.io/s/github/Ourstress/temp-test/tree/lesson3/react
 // Additional notes:
 // TodoList is a React component
 // React components tell the browser what to put up on screen
