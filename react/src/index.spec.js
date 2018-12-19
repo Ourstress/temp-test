@@ -6,6 +6,9 @@ describe("The TodoList component", () => {
     const instance = new TodoList();
     const displayedOnScreen = instance.render();
     const listOfTodos = displayedOnScreen.props.children[1];
-    expect(JSON.stringify(listOfTodos)).toMatch(/"type":"checkbox"/);
+    const task1CheckboxStatus = listOfTodos[0].props.children[1].props.checked;
+    const task2CheckboxStatus = listOfTodos[1].props.children[1].props.checked;
+    expect(task1CheckboxStatus).toEqual(false);
+    expect(task2CheckboxStatus).toEqual(true);
   });
 });

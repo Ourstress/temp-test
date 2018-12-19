@@ -2,14 +2,23 @@ import React, { Component } from "react";
 
 class TodoList extends Component {
   state = {
-    todos: ["task1", "task2", "task3"]
+    todos: [
+      { name: "task1", isCompleted: false },
+      { name: "task2", isCompleted: true },
+      { name: "task3", isCompleted: false }
+    ]
   };
   render() {
     return (
       <div>
         <header>Todolist</header>
         {this.state.todos.map(function(todo) {
-          return <p key={todo}>{todo}</p>;
+          return (
+            <p key={todo.name}>
+              {todo.name}
+              <input type="checkbox" />
+            </p>
+          );
         })}
       </div>
     );
@@ -18,17 +27,19 @@ class TodoList extends Component {
 
 export default TodoList;
 
-// Your task is to add a checkbox element <input type="checkbox" /> within the p tag above.
-// example: <p>Tick if you are attending code camp<input type="checkbox" /></p>
-// View demo at https://codesandbox.io/s/github/Ourstress/temp-test/tree/lesson4/react
+// Your task is to reflect the checkbox of a todo as checked if isCompleted:true and unchecked if isCompleted:false.
+
+// to reflect a checkbox as checked, give the checkbox element an attribute of checked=true like this: <input type="checkbox" checked=true />
+// View demo at https://codesandbox.io/s/github/Ourstress/temp-test/tree/lesson5/react
 
 // Additional notes:
-// The array of todos stored in TodoList's state can be accessed through this.state.todos.
-// Curly braces around this.state.todos indicates that the contents in between them as JavaScript.
-// In the example above, we are using the map() method on this.state.todos which is an array.
-// The map() method applies a function on every todo in this.state.todos.
-// The function returns a <p> element for every todo.
-// End result <header>Todolist</header> <p>Task1</p> <p>Task2</p> <p>Task3</p>
+
+// In the example above, we are using the map() method on this.state.todos which is an array of objects.
+// Each todo consist of a name and isCompleted status.
+// The map() method applies a function on every todo object in this.state.todos.
+// The function returns a <p> element for every todo reflecting the todo's name and a checkbox.
+
+// Key attribute
 // React expects us to add a unique key to child elements created by iteration.
 // For more info, visit https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
 
