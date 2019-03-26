@@ -1,31 +1,49 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "./actions";
 
-class TodoList extends Component {
-  state = {
-    todos: [
-      { name: "task1", isCompleted: false },
-      { name: "task2", isCompleted: true },
-      { name: "task3", isCompleted: false }
-    ]
-  };
-  render() {
-    return (
-      <div>
-        <header>Todolist</header>
-        {this.state.todos.map(function(todo) {
-          return (
-            <p key={todo.name}>
-              {todo.name}
-              <input type="checkbox" />
-            </p>
-          );
-        })}
-      </div>
-    );
-  }
+function TodoList(props) {
+  const [todoValue, setTodoValue] = useState("");
+  return (
+    <div>
+      <header>Todolist</header>
+      {props.todos.map(function(todo) {
+        return (
+          <p key={todo.name}>
+            {todo.name}
+            <input type="checkbox" />
+          </p>
+        );
+      })}
+      <form
+        onSubmit={e => {
+          props.addTodo(todoValue);
+          e.preventDefault();
+        }}
+      >
+        <input value={todoValue} onChange={e => setTodoValue(e.target.value)} />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
-export default TodoList;
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  addTodo: text => {
+    dispatch(addTodo(text));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList);
 
 // Your task is to reflect the checkbox of a todo as checked if isCompleted:true and unchecked if isCompleted:false.
 

@@ -1,3 +1,4 @@
-export const sayHello = () => ({
-  type: "HELLO_REACT"
+export const addTodo = text => ({
+  type: "Add todo",
+  text
 });
