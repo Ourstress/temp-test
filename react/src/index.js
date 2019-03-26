@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import TodoList from "./TodoList";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+const store = createStore();
 
 function App() {
   return (
-    <div className="App">
-      <TodoList />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <TodoList />
+      </div>
+    </Provider>
   );
 }
 
