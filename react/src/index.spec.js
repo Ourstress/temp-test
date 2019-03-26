@@ -1,5 +1,7 @@
 import React from "react";
+import { render } from "react-testing-library";
 import TodoList from "./TodoList";
+import "jest-dom/extend-expect";
 
 describe("The TodoList component", () => {
   it("Todolist's state should contain an array of todos with 3 elements", () => {
@@ -10,5 +12,10 @@ describe("The TodoList component", () => {
     const task2CheckboxStatus = listOfTodos[1].props.children[1].props.checked;
     expect(task1CheckboxStatus).toEqual(false);
     expect(task2CheckboxStatus).toEqual(true);
+  });
+
+  it("todolist element loads on render", () => {
+    const { getByText } = render(<TodoList />);
+    expect(getByText(/Todolist/i)).toBeInTheDocument();
   });
 });
